@@ -1,0 +1,112 @@
+{
+    "Rock": {
+        "Rock": {
+            "result": "Draw",
+            "message": "Rock meets Rock. It's a draw!"
+        },
+        "Paper": {
+            "result": "Lose",
+            "message": "Rock is covered by Paper. You lose!"
+        },
+        "Scissors": {
+            "result": "Win",
+            "message": "Rock crushes Scissors. You win!"
+        },
+        "Lizard": {
+            "result": "Win",
+            "message": "Rock crushes Lizard. You win!"
+        },
+        "Spock": {
+            "result": "Lose",
+            "message": "Rock is vaporized by Spock. You lose!"
+        }
+    },
+    "Paper": {
+        "Rock": {
+            "result": "Win",
+            "message": "Paper covers Rock. You win!"
+        },
+        "Paper": {
+            "result": "Draw",
+            "message": "Paper meets Paper. It's a draw!"
+        },
+        "Scissors": {
+            "result": "Lose",
+            "message": "Paper is cut by Scissors. You lose!"
+        },
+        "Lizard": {
+            "result": "Lose",
+            "message": "Paper is eaten by Lizard. You lose!"
+        },
+        "Spock": {
+            "result": "Win",
+            "message": "Paper disproves Spock. You win!"
+        }
+    },
+    "Scissors": {
+        "Rock": {
+            "result": "Lose",
+            "message": "Scissors are crushed by Rock. You lose!"
+        },
+        "Paper": {
+            "result": "Win",
+            "message": "Scissors cut Paper. You win!"
+        },
+        "Scissors": {
+            "result": "Draw",
+            "message": "Scissors meet Scissors. It's a draw!"
+        },
+        "Lizard": {
+            "result": "Win",
+            "message": "Scissors decapitate Lizard. You win!"
+        },
+        "Spock": {
+            "result": "Lose",
+            "message": "Scissors are smashed by Spock. You lose!"
+        }
+    },
+    "Lizard": {
+        "Rock": {
+            "result": "Lose",
+            "message": "Lizard is crushed by Rock. You lose!"
+        },
+        "Paper": {
+            "result": "Win",
+            "message": "Lizard eats Paper. You win!"
+        },
+        "Scissors": {
+            "result": "Lose",
+            "message": "With a gentle snip, Scissors decapitate Lizard. You lose!"
+        },
+        "Lizard": {
+            "result": "Draw",
+            "message": "Lizard meets Lizard. It's a draw!"
+        },
+        "Spock": {
+            "result": "Win",
+            "message": "Lizard poisons Spock. You win!"
+        }
+    },
+    "Spock": {
+        "Rock": {
+            "result": "Win",
+            "message": "Spock vaporizes Rock. You win!"
+        },
+        "Paper": {
+            "result": "Lose",
+            "message": "Spock is disproved by Paper. You lose!"
+        },
+        "Scissors": {
+            "result": "Win",
+            "message": "Spock smashes Scissors. You win!"
+        },
+        "Lizard": {
+            "result": "Lose",
+            "message": "Spock is poisoned by Lizard. You lose!"
+        },
+        "Spock": {
+            "result": "Draw",
+            "message": "Spock meets Spock. It's a draw!"
+        }
+    }
+}
