@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { saveUserName, loadUserName } from '../lib/persist.ts';
 import { Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 import GithubLink from '../lib/githubLink.tsx';
 
@@ -8,15 +9,21 @@ function Welcome() {
 
     const [userName, setName] = useState<string>(loadUserName());
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const userName = loadUserName();
         setName(userName);
     }, []);
 
     const handlePlay = () => {
-        const url_str = window.location.hostname + "#/game";
+
+        if (!userName) return;
+        if (userName.length === 0) return;
+
+        // const url_str = window.location.hostname + "#/game";
         saveUserName(userName);
-        window.location.href = url_str;
+        navigate("game")
     };
 
     return (

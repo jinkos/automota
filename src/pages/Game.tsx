@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loadScore, saveScore, loadUserName, Score } from '../lib/persist.ts';
 import { Button, ButtonGroup } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 import gameSchemaJson from '../assets/game_schema.json';
 import GithubLink from "../lib/githubLink.tsx";
@@ -19,7 +20,10 @@ function Game() {
 
     const [gameResult, setGameResult] = useState<string>('');
     const [gameMessage, setGameMessage] = useState<string>('');
+    const [compChoice, setCompChoice] = useState<string>('');
     const [score, setScore] = useState<Score>(loadScore());
+
+    const navigate = useNavigate();
 
     const userName: string = loadUserName();
 
@@ -28,6 +32,7 @@ function Game() {
 
     const handleChoose = (option: string) => {
         const randomOption = gameOptions[Math.floor(Math.random() * gameOptions.length)];
+        setCompChoice(randomOption);
 
         const result = gameSchema[option][randomOption].result;
         const message = gameSchema[option][randomOption].message;
@@ -51,8 +56,8 @@ function Game() {
 
     const handleRestart = () => {
         saveScore({ myScore: 0, compScore: 0 });
-        window.location.href =
-            window.location.hostname
+        navigate("/")
+
     }
 
     const greetingStr = `Hello ${userName}`;
@@ -106,8 +111,11 @@ function Game() {
     }
 
     const resultArea = () => {
+        if (gameResult === '') return null;
+
         return (
             <>
+                <h2>I choose {compChoice}</h2>
                 <h2>{gameResult}</h2>
                 <p>{gameMessage}</p>
             </>
