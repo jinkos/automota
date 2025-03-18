@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loadUserName } from '../lib/persist.ts';
+import { loadScore, saveScore, loadUserName, Score } from '../lib/persist.ts';
 import { Button, ButtonGroup } from "@mui/material";
 
 import gameSchemaJson from '../assets/game_schema.json';
@@ -18,8 +18,7 @@ function Game() {
 
     const [gameResult, setGameResult] = useState<string>('');
     const [gameMessage, setGameMessage] = useState<string>('');
-    const [myScore, setMyScore] = useState<number>(0);
-    const [compScore, setCompScore] = useState<number>(0);
+    const [score, setScore] = useState<Score>(loadScore());
 
     const userName: string = loadUserName();
 
@@ -33,13 +32,23 @@ function Game() {
         const message = gameSchema[option][randomOption].message;
 
         if (result === 'Win') {
-            setMyScore(myScore + 1);
+            const newScore = { myScore: score.myScore + 1, compScore: score.compScore };
+            saveScore(newScore);
+            setScore(newScore);
         } else if (result === 'Lose') {
-            setCompScore(compScore + 1);
+            const newScore = { myScore: score.myScore, compScore: score.compScore + 1 };
+            saveScore(newScore);
+            setScore(newScore);
         }
 
         setGameResult(result);
         setGameMessage(message);
+    }
+
+    const handleRestart = () => {
+        saveScore({ myScore: 0, compScore: 0 });
+        window.location.href =
+            window.location.hostname
     }
 
     const greetingStr = `Hello ${userName}`;
@@ -57,8 +66,7 @@ function Game() {
 
     return (
         <>
-            <Button onClick={() => window.location.href =
-                window.location.hostname}
+            <Button onClick={handleRestart}
                 variant="contained"
             >
                 Restart
@@ -70,8 +78,8 @@ function Game() {
             </ButtonGroup>
             <h2>{gameResult}</h2>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <h3>{userName}: {myScore}</h3>
-                <h3>Computer: {compScore}</h3>
+                <h3>{userName}: {score.myScore}</h3>
+                <h3>Computer: {score.compScore}</h3>
             </div>
             <p>{gameMessage}</p>
         </>
