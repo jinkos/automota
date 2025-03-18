@@ -8,15 +8,15 @@ import './App.css';
 function App() {
     return (
         <div className='App'>
-        <div>
-            <Router>
-                <Routes>
-                    <Route path="/" element=<Welcome /> />
-                    <Route path="/game" element=<Game /> />
-                    <Route path="/automota" element=<Automota /> />
-                </Routes>
-            </Router>
-        </div>
+            <div>
+                <Router>
+                    <Routes>
+                        <Route path="/" element=<Welcome /> />
+                        <Route path="/game" element=<Game /> />
+                        <Route path="/automota" element=<Automota /> />
+                    </Routes>
+                </Router>
+            </div>
         </div>
     )
 }

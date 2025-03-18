@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { loadUserName } from '../lib/persist.ts';
-import gameSchema from '../assets/game_schema.json'
+import { Button, ButtonGroup } from "@mui/material";
 
-// interface GameSchema {
-//     [key: string]: {
-//         [key: string]: {
-//             result: string;
-//             message: string;
-//         };
-//     };
-// }
+import gameSchemaJson from '../assets/game_schema.json';
+
+// the game schema is the only things with a remotely complex type
+interface GameSchema {
+    [key: string]: {
+        [key: string]: {
+            result: string;
+            message: string;
+        };
+    };
+}
 
 function Game() {
 
@@ -18,8 +21,9 @@ function Game() {
     const [myScore, setMyScore] = useState<number>(0);
     const [compScore, setCompScore] = useState<number>(0);
 
-    const userName = loadUserName();
+    const userName: string = loadUserName();
 
+    const gameSchema: GameSchema = gameSchemaJson;
     const gameOptions = Object.keys(gameSchema)
 
     const handleChoose = (option: string) => {
@@ -40,30 +44,36 @@ function Game() {
 
     const greetingStr = `Hello ${userName}`;
 
-    const gameOpList = gameOptions.map((option) => {
-        return <button
+    const gameOptionButtonList = gameOptions.map((option) => {
+        return <Button
             key={option}
             onClick={() => handleChoose(option)}
+            variant="contained"
         >
             {option}
-        </button>
+        </Button>
     }
     );
 
     return (
         <>
+            <Button onClick={() => window.location.href =
+                window.location.hostname}
+                variant="contained"
+            >
+                Restart
+            </Button>
             <h1>{greetingStr}</h1>
             <h2>Choose your weapon...</h2>
-            {gameOpList}
+            <ButtonGroup orientation="vertical" variant="contained" aria-label="Basic button group">
+                {gameOptionButtonList}
+            </ButtonGroup>
             <h2>{gameResult}</h2>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <h3>{userName}: {myScore}</h3>
+                <h3>Computer: {compScore}</h3>
+            </div>
             <p>{gameMessage}</p>
-            <h2>Score</h2>
-            <p>{userName}: {myScore}</p>
-            <p>Computer: {compScore}</p>
-            <button onClick={() => window.location
-                .href = window.location.hostname}>
-                Restart
-            </button>
         </>
     )
 }
