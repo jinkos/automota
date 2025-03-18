@@ -65,7 +65,7 @@ function Game() {
     );
 
     return (
-        <>
+        <div>
             <Button onClick={handleRestart}
                 variant="contained"
             >
@@ -82,7 +82,7 @@ function Game() {
                 <h3>Computer: {score.compScore}</h3>
             </div>
             <p>{gameMessage}</p>
-        </>
+        </div>
     )
 }
 
